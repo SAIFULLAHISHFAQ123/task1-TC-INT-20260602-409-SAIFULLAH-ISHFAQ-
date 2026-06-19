@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-slate-50 text-slate-800 transition-colors duration-200 antialiased;
+    font-family: 'Inter', 'Outfit', sans-serif;
+  }
+  
+  html.dark body {
+    @apply bg-slate-950 text-slate-100;
+  }
+  
+  /* Apply fonts based on dir */
+  html.font-urdu body {
+    font-family: 'Noto Sans Arabic', 'Noto Nastaliq Urdu', sans-serif;
+  }
+
+  /* Focus rings */
+  input:focus, select:focus, textarea:focus {
+    @apply outline-none ring-2 ring-violet-500 border-transparent;
+  }
+}
+
+/* Custom Urdu font-specific adjustments */
+.font-urdu {
+  font-family: 'Noto Sans Arabic', 'Noto Nastaliq Urdu', sans-serif;
+}
+
+/* Urdu styling adjustment for line heights and text sizes */
+[dir="rtl"] .font-urdu {
+  line-height: 1.8;
+}
+
+/* Recharts Tooltip styling adjustments for dark mode */
+.custom-recharts-tooltip {
+  @apply rounded-xl border border-slate-200 bg-white/95 p-3 shadow-lg backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/95;
+}
+
+/* Glassmorphism templates */
+.glass-card {
+  @apply bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800/80 shadow-sm rounded-2xl;
+}
+
+.glass-card-hover {
+  @apply hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700/80 transition-all duration-300;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 dark:bg-slate-800 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors;
+}
+
+/* Skeleton animation pulse */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-loading {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 37%, #f1f5f9 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .skeleton-loading {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 37%, #1e293b 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Reset react default styles for #root */
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  border: none;
+  min-height: 100vh;
+}
